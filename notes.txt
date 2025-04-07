@@ -1,0 +1,34 @@
+GOAL=================================
+The goal of this project is to scrape Linkedin jobs for keywords that can result in a report of current job market demands. The keywords this means to aim 
+for are skills required for software engineering jobs. 
+
+To analyze the market this high level approach will be taken:
+1. Provide a job title to search by
+2. Search Linkedin using the job title.
+3. Scan the results of the search in a meaningful way to analyze current needs in the American SWE job market.
+
+1. Provide a job title to search by:
+    To start with setting a variable in the script should suffice.If this project grows there may be good reason to develop a more sophisticated UI to support
+    more in depth searches.
+
+2. Search linkedin using the job title:
+    In order to search Linkedin jobs close to programmatically web scraping is a necessary approach due a lack of a real code supported interface. 
+    A common stack that used for web scraping is:
+    requests + BeautifulSoup  # Quick and simple
+    Scrapy                    # Large-scale and structured
+    Selenium / Playwright     # JS-heavy sites
+
+    These will provide a basis for the scrapping approach.
+
+3. Scan the results of the search in a meaningful way to analyze current needs in the American SWE job market.
+The overall goal of the scan is to extract helpful information on what someone in the job market should learn. To do this effectively there are three main
+ways to measure skills for the initial version of this project.
+1. In how many jobs a string for a skill occurrences
+2. In jobs where the string occurrences what was its frequency compared to other technical skills.
+3. Correlation of a string with other string. So where a string occurrences how likely was it to be in the job description with another skill
+
+Analyzing a large number of job should provide for what skills should be learned, the priority of what should be learned, and picturing appropriate skillsets
+to pursue to fit roles based on real data.
+
+
+https://www.scrapingdog.com/blog/scrape-linkedin-jobs/
