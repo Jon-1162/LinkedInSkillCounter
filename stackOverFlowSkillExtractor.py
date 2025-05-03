@@ -57,6 +57,7 @@ for column in justSkills:
         # justSkillsSets[column].update(dataList)
         
 print(allSkillsSet)
+print(len(allSkillsSet))
 
 # print(allSkillsSet)
 
