@@ -26,9 +26,27 @@ ways to measure skills for the initial version of this project.
 1. In how many jobs a string for a skill occurrences
 2. In jobs where the string occurrences what was its frequency compared to other technical skills.
 3. Correlation of a string with other string. So where a string occurrences how likely was it to be in the job description with another skill
+-One approach would be using ML/LLM would be take the (cosine/dot product) of 2 vectors to determine closeness. Copmaring 2 vectors
 
 Analyzing a large number of job should provide for what skills should be learned, the priority of what should be learned, and picturing appropriate skillsets
 to pursue to fit roles based on real data.
 
 
 https://www.scrapingdog.com/blog/scrape-linkedin-jobs/
+
+
+
+
+8.4.2024---------------------------------------------------------------------------------------------------------------------------------------------
+Current Development Road Map 
+-Finish full analysis of initial data set
+    -consider packing in all csv/data files into a separate dir to reduce repeat data files clogging repo size limit
+    -output all analysis into compartmentalized csv's
+    -Implement minimum data visualizations for each analysis
+
+-Design a application for the analysis to be prompted with a user friendly interface with pleasing and informative data visualizations
+
+
+
+decompose the matrix into its most importnat values
+use single value decomposition would derive x most specific values. this involves eigan values. This would find columns or rows of the matrix that contribute the most data overall data in the matrix
