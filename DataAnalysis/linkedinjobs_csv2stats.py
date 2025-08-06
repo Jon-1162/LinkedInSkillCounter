@@ -19,31 +19,28 @@ def getSkillCounts():
                 setCountDict[skill] = setCountDict[skill] + 1 
 
     returnDF = pd.DataFrame([setCountDict])
-
     returnDF.to_csv('skillSetOccurrence.csv', index=True)
+    return returnDF
 
-    # print("setCountDict")
-    # for skill in setCountDict:
-    #     if setCountDict[skill] >= 1:
-    #         print(skill + " " + str(setCountDict[skill]))
 
 # 2. In jobs where the string occurrences what was its frequency compared to other technical skills. This is a count and compare. This is to help determine relative importance of skills within a job
 #  just count the number or times a skill occours for each job. With the end goal of just counting string instance of a skill and summing for a 1D stat at the end
-# sumCountDict = dict.fromkeys(skillSetReference, 0)
+def getSkillAllInstancesSumCount():
+    sumCountDict = dict.fromkeys(skillSetReference, 0)
 
-# for row in df.itertuples():
-#     jobDescList = row.jobDesc.split()
-#     for word in jobDescList:
-#         for skill in skillSetReference:
-#             if skill in word:
-#                 sumCountDict[skill] = sumCountDict[skill] + 1 
-# print("sumCountDict")
-# for skill in sumCountDict:
-#     if sumCountDict[skill] >= 1:
-#         print(skill + " " + str(sumCountDict[skill]))
-# print("-" * 40)
+    for row in df.itertuples():
+        jobDescList = row.jobDesc.split()
+        for word in jobDescList:
+            for skill in skillSetReference:
+                if skill in word:
+                    sumCountDict[skill] = sumCountDict[skill] + 1 
+    returnDF = pd.DataFrame([sumCountDict])
+    returnDF.to_csv("allSkillInstancesCount.csv", index=True)
+    return returnDF
+    
 # # 3. Correlation of a string with other string. So where a string occurrences how likely was it to be in the job description with another skill
-# # This will agregate over #2make 2d matrix like the below example to get frequency scan each job and add to occurrences
+# # This will agregate over 
+# 2 make 2d matrix like the below example to get frequency scan each job and add to occurrences
 # # jobid    py    java      c
 # # 1        10     2        0
 # # 2        5      5       11
@@ -55,63 +52,63 @@ def getSkillCounts():
 # # py         | 7     x           11           
 # # rust       |
 # # c          | 15      6     
+def coOccurance():
+    # Makes list of column titles
+    jobIDwSkillsDfColumns = ["jobId"]
+    for skill in skillSetReference:
+        jobIDwSkillsDfColumns.append(skill)
 
-# # Makes list of column titles
-# jobIDwSkillsDfColumns = ["jobId"]
-# for skill in skillSetReference:
-#     jobIDwSkillsDfColumns.append(skill)
+    # Makes a df from the list of column  titles
+    jobIDwSkillsDf = pd.DataFrame(columns=jobIDwSkillsDfColumns)
 
-# # Makes a df from the list of column  titles
-# jobIDwSkillsDf = pd.DataFrame(columns=jobIDwSkillsDfColumns)
-
-# # Loops through job data to make a df like the following example table
-# # jobid    py    java      c
-# # 1        10     2        0
-# # 2        5      5       11
-# # 3        0      0        3
-# for row in df.itertuples():
-#     setCountDictRowTemplate = dict.fromkeys(skillSetReference, 0)
-#     setCountDictRowTemplate["jobID"] = 0
-#     setCountDictNewRow = setCountDictRowTemplate
-#     print("fresh rewrite Dict ")
-#     print(setCountDictNewRow)
-    
-#     setCountDictNewRow["jobId"] = row[1]    
-#     for skill in skillSetReference:
-#         if skill in row.jobDesc:
-#             setCountDictNewRow[skill] =  1 
-#         # Add row dictionary to main df
-#     jobIDwSkillsDf.loc[len(jobIDwSkillsDf)] = setCountDictNewRow
+    # Loops through job data to make a df like the following example table
+    # jobid    py    java      c
+    # 1        10     2        0
+    # 2        5      5       11
+    # 3        0      0        3
+    for row in df.itertuples():
+        setCountDictRowTemplate = dict.fromkeys(skillSetReference, 0)
+        setCountDictRowTemplate["jobID"] = 0
+        setCountDictNewRow = setCountDictRowTemplate
+        print("fresh rewrite Dict ")
+        print(setCountDictNewRow)
+        
+        setCountDictNewRow["jobId"] = row[1]    
+        for skill in skillSetReference:
+            if skill in row.jobDesc:
+                setCountDictNewRow[skill] =  1 
+            # Add row dictionary to main df
+        jobIDwSkillsDf.loc[len(jobIDwSkillsDf)] = setCountDictNewRow
 
 
 
-# # Given one skill is present, how many times does another skill co-occur in the same job description
-# # Output format (example):
-# #             Java | Python | Rust | C
-# # Java       |  x     15       14     2
-# # Python     |  7      x        11     1
-# # Rust       |  4      6         x     0
-# # C          | 15      6         3     x
+    # # Given one skill is present, how many times does another skill co-occur in the same job description
+    # # Output format (example):
+    # #             Java | Python | Rust | C
+    # # Java       |  x     15       14     2
+    # # Python     |  7      x        11     1
+    # # Rust       |  4      6         x     0
+    # # C          | 15      6         3     x
 
-# # Initialize the co-occurrence matrix
-# skillsList = sorted(skillSetReference)
-# coOccurrenceDf = pd.DataFrame(0, index=skillsList, columns=skillsList)
+    # Initialize the co-occurrence matrix
+    skillsList = sorted(skillSetReference)
+    coOccurrenceDf = pd.DataFrame(0, index=skillsList, columns=skillsList)
 
-# # Fill co-occurrence matrix
-# for index, row in jobIDwSkillsDf.iterrows():
-#     # Extract list of skills present in the job description
-#     present_skills = [skill for skill in skillsList if row[skill] == 1]
-    
-#     # For each pair of skills, increment co-occurrence count
-#     for i in range(len(present_skills)):
-#         for j in range(len(present_skills)):
-#             if i != j:
-#                 skill_i = present_skills[i]
-#                 skill_j = present_skills[j]
-#                 coOccurrenceDf.at[skill_i, skill_j] += 1
+    # Fill co-occurrence matrix
+    for index, row in jobIDwSkillsDf.iterrows():
+        # Extract list of skills present in the job description
+        present_skills = [skill for skill in skillsList if row[skill] == 1]
+        
+        # For each pair of skills, increment co-occurrence count
+        for i in range(len(present_skills)):
+            for j in range(len(present_skills)):
+                if i != j:
+                    skill_i = present_skills[i]
+                    skill_j = present_skills[j]
+                    coOccurrenceDf.at[skill_i, skill_j] += 1
 
-# # Optional: remove self-cooccurrence (diagonal), or just leave it at 0
-# print("Skill Co-occurrence Matrix")
-# print(coOccurrenceDf)
+    # Optional: remove self-cooccurrence (diagonal), or just leave it at 0
+    print("Skill Co-occurrence Matrix")
+    print(coOccurrenceDf)
 
-# coOccurrenceDf.to_csv('coOccurrenceDf.csv', index=True)
+    coOccurrenceDf.to_csv('coOccurrenceDf.csv', index=True)
