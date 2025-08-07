@@ -19,7 +19,7 @@ def getSkillCounts():
                 setCountDict[skill] = setCountDict[skill] + 1 
 
     returnDF = pd.DataFrame([setCountDict])
-    returnDF.to_csv('skillSetOccurrence.csv', index=True)
+    returnDF.to_csv('../OutputData/skillSetOccurrence.csv', index=True)
     return returnDF
 
 
@@ -35,7 +35,7 @@ def getSkillAllInstancesSumCount():
                 if skill in word:
                     sumCountDict[skill] = sumCountDict[skill] + 1 
     returnDF = pd.DataFrame([sumCountDict])
-    returnDF.to_csv("allSkillInstancesCount.csv", index=True)
+    returnDF.to_csv("../OutputData/allSkillInstancesCount.csv", index=True)
     return returnDF
     
 # # 3. Correlation of a string with other string. So where a string occurrences how likely was it to be in the job description with another skill
@@ -52,7 +52,7 @@ def getSkillAllInstancesSumCount():
 # # py         | 7     x           11           
 # # rust       |
 # # c          | 15      6     
-def coOccurance():
+def coOccurrence():
     # Makes list of column titles
     jobIDwSkillsDfColumns = ["jobId"]
     for skill in skillSetReference:
@@ -111,4 +111,5 @@ def coOccurance():
     print("Skill Co-occurrence Matrix")
     print(coOccurrenceDf)
 
-    coOccurrenceDf.to_csv('coOccurrenceDf.csv', index=True)
+    coOccurrenceDf.to_csv('../OutputData/coOccurrenceDf.csv', index=True)
+    return coOccurrenceDf

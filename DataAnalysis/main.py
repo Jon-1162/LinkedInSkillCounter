@@ -1,13 +1,14 @@
 import pandas as pd
 
-from linkedinjobs_csv2stats import getSkillAllInstancesSumCount, getSkillCounts
+from linkedinjobs_csv2stats import coOccurrence, getSkillAllInstancesSumCount, getSkillCounts
 
 
 
 def main():
     # df = pd.read_csv('linkedinjobs.csv')
     getSkillCounts()
-    getSkillAllInstancesSumCount()
+    # getSkillAllInstancesSumCount()
+    # coOccurrence()
 
 if __name__ == "__main__":
     

@@ -26,6 +26,9 @@ k=[]
 headers={"User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36"}
 # link for linked in jobs posting, should defiently be modifified to not be nevada
 target_url='https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?keywords=Python%20%28Programming%20Language%29&location=Las%20Vegas%2C%20Nevada%2C%20United%20States&geoId=100293800&currentJobId=3415227738&start={}'
+
+
+
 # loop to go through pages of results. This needs to get re worked to automate the pagination. the numerator is total results(117), and the denomator is the results per pages
 for i in range(0,math.ceil(117/25)):
     # gets the html response at page i
