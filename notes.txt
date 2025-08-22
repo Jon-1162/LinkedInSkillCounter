@@ -40,11 +40,16 @@ https://www.scrapingdog.com/blog/scrape-linkedin-jobs/
 8.4.2024---------------------------------------------------------------------------------------------------------------------------------------------
 Current Development Road Map 
 -Finish full analysis of initial data set
-    -consider packing in all csv/data files into a separate dir to reduce repeat data files clogging repo size limit
-    -output all analysis into compartmentalized csv's
-    -Implement minimum data visualizations for each analysis
+    -consider packing in all csv/data files into a separate dir to reduce repeat data files clogging repo size limit-DONE
+    -output all analysis into compartmentalized csv's -DONE
+    -Decide on what data visualizations is best for each metric-DONE
+        -skillSetOccurrence - graph with horizontal bars ranking from lowest to highest
+        -allSkillInstancesCount - graph with horizontal bars ranking from lowest to highest
+        -coOccurence - a undirected node graph would be cool showing releationships visually. Size of nodes can indicate mentions color of vertexs can indicate frequency of 
 
--Design a application for the analysis to be prompted with a user friendly interface with pleasing and informative data visualizations
+-Design a application for the analysis to be prompted with a user friendly interface with pleasing and informative data visualizations-DONE
+
+Start working on next.js app.
 
 
 

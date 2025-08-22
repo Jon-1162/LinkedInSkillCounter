@@ -5,11 +5,10 @@ from linkedinjobs_csv2stats import coOccurrence, getSkillAllInstancesSumCount, g
 
 
 def main():
-    # df = pd.read_csv('linkedinjobs.csv')
     getSkillCounts()
-    # getSkillAllInstancesSumCount()
-    # coOccurrence()
+    getSkillAllInstancesSumCount()
+    coOccurrence()
 
 if __name__ == "__main__":
-    
     main()
+    
